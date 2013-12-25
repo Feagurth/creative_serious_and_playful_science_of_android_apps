@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	/** Called when the activity is first created. */
+	
+	// Declarating objects and variables
 	private TextView textTimer;
 	private TextView textPoints;
 	private Button startStopButton;

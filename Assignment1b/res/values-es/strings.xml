@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Time Stop!</string>
+    <string name="explanation">Para las centésimas en 00 para ganar!</string>
+    <string name="timerZero">00:00:00</string>
+    <string name="Start">Empezar</string>
+    <string name="Stop">Parar</string>
+    <string name="Points">Puntos: </string>    
+</resources>

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Time Stop!</string>
-    <string name="explanation">Stop the chrono on 00 to win!</string>
+    <string name="explanation">Stop the centiseconds on 00 to win!</string>
     <string name="timerZero">00:00:00</string>
     <string name="Start">Start</string>
     <string name="Stop">Stop</string>
