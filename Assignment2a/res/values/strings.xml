@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Assignment2a</string>
+    <string name="title_activity_war_of_the_worlds">War Of The Worlds</string>
+    <string name="title_activity_nasa">Nasa</string>
+    <string name="title_activity_roundball">Roundball</string>
+    <string name="title_activity_jabberwocky">Jabberwocky</string>
+    <string name="picture">Picture</string>
+    <string name="wikipedia">Wikipedia</string>
+</resources>

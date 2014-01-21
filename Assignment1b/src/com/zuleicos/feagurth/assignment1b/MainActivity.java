@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
 			// The time in milliseconds is the actual time in milliseconds minus the start time
 			timeInMillies = SystemClock.uptimeMillis() - startTime;
 			
-			// The actual time is the time in millisecons plus the time beetween clicks
+			// The actual time is the time in milliseconds plus the time between clicks
 			finalTime = timeSwap + timeInMillies;
 
 			// Converting the actual time to seconds dividing between 1000
