@@ -28,9 +28,8 @@ public class Jabberwocky extends Activity {
 
 	@Override
 	protected void onPause() {
-		// Stoping the MediaPlayer and releasing resources
+		// Stoping the MediaPlayer
 		poem.stop();
-		poem.release();
 		
 		super.onPause();
 	}
@@ -44,10 +43,8 @@ public class Jabberwocky extends Activity {
 	public void openWikipedia(View v)
 	{
 		
-		// Stoping the MediaPlayer and releasing resources
+		// Stoping the MediaPlayer
 		poem.stop();
-		poem.release();
-
 		
 		// Creating the intent to load the wikipedia page on an external program
 		Intent i = new Intent(Intent.ACTION_VIEW);

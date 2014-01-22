@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hangman</string>
+
+    <string name="input_character">Input Character</string>
+
+    <string name="image_of_the_game_status">Image of the game status</string>
+
+</resources>

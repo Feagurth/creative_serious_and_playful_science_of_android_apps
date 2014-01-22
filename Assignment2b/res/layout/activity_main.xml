@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <ListView
+        android:id="@+id/lstLetrasIntroducidas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cadalso"
+        android:layout_alignTop="@+id/cadalso"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/cadalso" >
+    </ListView>
+
+    <View
+        android:id="@+id/separador2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@+id/cadalso"
+        android:layout_below="@+id/cadalso"
+        android:background="@android:color/darker_gray" />
+
+    <Button
+        android:id="@+id/inputButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editLetra"
+        android:layout_alignRight="@+id/editLetra"
+        android:layout_below="@+id/editLetra"
+        android:duplicateParentState="false"
+        android:longClickable="false"
+        android:onClick="inputLetter"
+        android:text="@string/input_character" />
+
+    <EditText
+        android:id="@+id/editLetra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/separador2"
+        android:layout_alignRight="@+id/separador2"
+        android:layout_below="@+id/separador2"
+        android:layout_marginTop="5dp"
+        android:clickable="false"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:inputType="textCapCharacters" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textSolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cadalso"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/lstLetrasIntroducidas"
+        android:paddingBottom="5dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/cadalso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textSolution"
+        android:contentDescription="@string/image_of_the_game_status"
+        android:src="@drawable/pic00" />
+
+    <View
+        android:id="@+id/separador1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/textSolution"
+        android:layout_alignLeft="@+id/textSolution"
+        android:background="@android:color/darker_gray" />
+
+</RelativeLayout>
