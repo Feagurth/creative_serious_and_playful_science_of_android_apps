@@ -11,6 +11,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +22,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -184,16 +185,12 @@ public class MainActivity extends Activity {
 		}
 		case 1:
 		case 2:
-			Toast.makeText(this, "Wrong character!\nPlease input a letter..",
-					Toast.LENGTH_SHORT).show();
-			tvSolution.setText("");
+			txtInputLetter.setText("");
+			msgBox("Wrong character!", "Please, input a letter...");
 			break;
 		case 3:
-			Toast.makeText(
-					this,
-					"You already played that letter!\nPlese choose another one",
-					Toast.LENGTH_SHORT).show();
-			tvSolution.setText("");
+			txtInputLetter.setText("");
+			msgBox("Wrong character!", "You already played that letter!\nPlese choose another one...");
 			break;
 		}
 
@@ -204,18 +201,33 @@ public class MainActivity extends Activity {
 			gamesPlayed++;
 
 			if (state == gameState.WIN) {
-				Toast.makeText(this, "You Win", Toast.LENGTH_SHORT).show();
+				msgBox("Good Work", "You Win!");
 				gamesWon++;
 			} else {
-				Toast.makeText(this, "You Lose\nWord: " + wordToGuess,
-						Toast.LENGTH_SHORT).show();
-			}
+				msgBox("Oooohhh", "You Lose!\nAnswer: " + wordToGuess);			
+				}
 
 			tvPoints.setText(gamesWon + "/ " + gamesPlayed);
 			new RetrieveSiteData()
-			.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
+					.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
 		}
 
+	}
+
+	private void msgBox(String strTitle, String strMessage) {
+		AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+		
+		dlgAlert.setTitle(strTitle);
+		dlgAlert.setMessage(strMessage);
+		
+		dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.dismiss();
+			}
+		});
+
+		dlgAlert.setCancelable(true);
+		dlgAlert.create().show();
 	}
 
 	public class RetrieveSiteData extends AsyncTask<String, Void, String> {
@@ -286,7 +298,7 @@ public class MainActivity extends Activity {
 				lettersPlayed.clear();
 			} else {
 				new RetrieveSiteData()
-				.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
+						.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
 				try {
 					this.finalize();
 				} catch (Throwable e) {

@@ -32,13 +32,14 @@ public final class R {
     }
     public static final class id {
         public static final int cadalso=0x7f070001;
-        public static final int editLetra=0x7f070004;
-        public static final int inputButton=0x7f070003;
+        public static final int editLetra=0x7f070005;
+        public static final int inputButton=0x7f070004;
         public static final int lstLetrasIntroducidas=0x7f070000;
-        public static final int separador1=0x7f070006;
-        public static final int separador2=0x7f070002;
-        public static final int textPoints=0x7f070007;
-        public static final int textSolution=0x7f070005;
+        public static final int separador1=0x7f070007;
+        public static final int separador2=0x7f070003;
+        public static final int textPoints=0x7f070008;
+        public static final int textSolution=0x7f070006;
+        public static final int textView1=0x7f070002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -47,6 +48,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int image_of_the_game_status=0x7f050002;
         public static final int input_character=0x7f050001;
+        public static final int played=0x7f050003;
     }
     public static final class style {
         /** 

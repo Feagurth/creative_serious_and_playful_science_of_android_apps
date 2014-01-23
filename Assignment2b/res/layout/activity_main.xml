@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/cadalso"
-        android:layout_alignTop="@+id/cadalso"
+        android:layout_below="@+id/textView1"
         android:layout_marginLeft="18dp"
         android:layout_toRightOf="@+id/cadalso" >
 
@@ -95,5 +95,15 @@
         android:layout_alignTop="@+id/textSolution"
         android:gravity="center_vertical|center_horizontal"
         android:lines="1" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lstLetrasIntroducidas"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textPoints"
+        android:text="@string/played"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
