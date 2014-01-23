@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 		WIN, LOSE, CONTINUE
 	};
 
-	int intTries = 0;
+	int intTries;
 	int gamesPlayed = 0;
 	int gamesWon = 0;
 
@@ -64,12 +64,11 @@ public class MainActivity extends Activity {
 
 		lstLetras.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, lettersPlayed));
-		
+
 		tvPoints.setText(gamesWon + " / " + gamesPlayed);
 
 		new RetrieveSiteData()
 				.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
-
 	}
 
 	private int validateLetter(String strValue) {
@@ -87,6 +86,21 @@ public class MainActivity extends Activity {
 		}
 
 		return 0;
+	}
+
+	private Boolean validateWord(String strValue) {
+
+		if (!strValue.equals("") && strValue != null) {
+			for (char value : strValue.toCharArray()) {
+				if ("abcdefghijklmnñopqrstuvwxyz ".indexOf(value) == -1)
+					return false;
+			}
+		} else {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	public void inputLetter(View v) {
@@ -170,8 +184,7 @@ public class MainActivity extends Activity {
 		}
 		case 1:
 		case 2:
-			Toast.makeText(this, 
-					"Wrong character!\nPlease input a letter..",
+			Toast.makeText(this, "Wrong character!\nPlease input a letter..",
 					Toast.LENGTH_SHORT).show();
 			tvSolution.setText("");
 			break;
@@ -199,10 +212,8 @@ public class MainActivity extends Activity {
 			}
 
 			tvPoints.setText(gamesWon + "/ " + gamesPlayed);
-
 			new RetrieveSiteData()
-					.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
-
+			.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
 		}
 
 	}
@@ -247,30 +258,42 @@ public class MainActivity extends Activity {
 			wordToGuess = html.substring(pos1 + 4, pos2 - 1).toLowerCase(
 					Locale.getDefault());
 
-			guessedWord = "";
-			tvSolution.setText("");
+			if (validateWord(wordToGuess)) {
 
-			imgGallows.setImageDrawable(getResources().getDrawable(
-					R.drawable.pic00));
+				guessedWord = "";
+				tvSolution.setText("");
 
-			intTries = 0;
-			state = gameState.CONTINUE;
+				imgGallows.setImageDrawable(getResources().getDrawable(
+						R.drawable.pic00));
 
-			for (int i = 0; i < wordToGuess.length(); i++) {
-				if (wordToGuess.toCharArray()[i] == " ".charAt(0)) {
-					guessedWord += " ";
-					tvSolution.setText(tvSolution.getText() + "  ");
-				} else {
-					guessedWord += "_";
-					tvSolution.setText(tvSolution.getText() + "_ ");
+				intTries = 0;
+				state = gameState.CONTINUE;
+
+				for (int i = 0; i < wordToGuess.length(); i++) {
+					if (wordToGuess.toCharArray()[i] == " ".charAt(0)) {
+						guessedWord += " ";
+						tvSolution.setText(tvSolution.getText() + "  ");
+					} else {
+						guessedWord += "_";
+						tvSolution.setText(tvSolution.getText() + "_ ");
+					}
+
 				}
 
+				txtInputLetter.setEnabled(true);
+				btnInputButon.setEnabled(true);
+				lstLetras.setEnabled(true);
+				lettersPlayed.clear();
+			} else {
+				new RetrieveSiteData()
+				.execute("http://www.randomhouse.com/features/rhwebsters/words.pperl");
+				try {
+					this.finalize();
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-
-			txtInputLetter.setEnabled(true);
-			btnInputButon.setEnabled(true);
-			lstLetras.setEnabled(true);
-			lettersPlayed.clear();
 
 		}
 	}
