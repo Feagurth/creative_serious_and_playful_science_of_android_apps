@@ -37,6 +37,7 @@ public final class R {
         public static final int lstLetrasIntroducidas=0x7f070000;
         public static final int separador1=0x7f070006;
         public static final int separador2=0x7f070002;
+        public static final int textPoints=0x7f070007;
         public static final int textSolution=0x7f070005;
     }
     public static final class layout {

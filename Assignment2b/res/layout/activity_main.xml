@@ -16,6 +16,7 @@
         android:layout_alignTop="@+id/cadalso"
         android:layout_marginLeft="18dp"
         android:layout_toRightOf="@+id/cadalso" >
+
     </ListView>
 
     <View
@@ -37,7 +38,7 @@
         android:longClickable="false"
         android:onClick="inputLetter"
         android:text="@string/input_character" />
-
+   
     <EditText
         android:id="@+id/editLetra"
         android:layout_width="wrap_content"
@@ -50,7 +51,8 @@
         android:ems="10"
         android:enabled="true"
         android:gravity="center_vertical|center_horizontal"
-        android:inputType="textCapCharacters" >
+        android:inputType="textCapCharacters"
+        android:maxLength="1" >
 
         <requestFocus />
     </EditText>
@@ -61,9 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cadalso"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/lstLetrasIntroducidas"
-        android:paddingBottom="5dp"
+        android:layout_alignRight="@+id/cadalso"
         android:gravity="center_vertical|center_horizontal"
+        android:paddingBottom="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
@@ -82,5 +84,16 @@
         android:layout_alignBottom="@+id/textSolution"
         android:layout_alignLeft="@+id/textSolution"
         android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/textPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/separador1"
+        android:layout_alignLeft="@+id/lstLetrasIntroducidas"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textSolution"
+        android:gravity="center_vertical|center_horizontal"
+        android:lines="1" />
 
 </RelativeLayout>
