@@ -9,43 +9,45 @@
     tools:context=".MainActivity" >
 
     <ListView
-        android:id="@+id/lstLetrasIntroducidas"
+        android:id="@+id/lstLettersPlayed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/cadalso"
+        android:layout_alignBottom="@+id/gallows"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="18dp"
-        android:layout_toRightOf="@+id/cadalso" >
+        android:layout_toRightOf="@+id/gallows" >
 
     </ListView>
 
     <View
-        android:id="@+id/separador2"
+        android:id="@+id/separator2"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_alignLeft="@+id/cadalso"
-        android:layout_below="@+id/cadalso"
+        android:layout_alignLeft="@+id/gallows"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/gallows"
         android:background="@android:color/darker_gray" />
 
     <Button
         android:id="@+id/inputButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editLetra"
-        android:layout_alignRight="@+id/editLetra"
-        android:layout_below="@+id/editLetra"
+        android:layout_alignLeft="@+id/editLetter"
+        android:layout_alignRight="@+id/editLetter"
+        android:layout_below="@+id/editLetter"
         android:duplicateParentState="false"
         android:longClickable="false"
         android:onClick="inputLetter"
         android:text="@string/input_character" />
    
     <EditText
-        android:id="@+id/editLetra"
+        android:id="@+id/editLetter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/separador2"
-        android:layout_alignRight="@+id/separador2"
-        android:layout_below="@+id/separador2"
+        android:layout_alignLeft="@+id/separator2"
+        android:layout_alignRight="@+id/separator2"
+        android:layout_below="@+id/separator2"
         android:layout_marginTop="5dp"
         android:clickable="false"
         android:ems="10"
@@ -61,24 +63,24 @@
         android:id="@+id/textSolution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cadalso"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/cadalso"
+        android:layout_alignLeft="@+id/gallows"
+        android:layout_alignRight="@+id/gallows"
         android:gravity="center_vertical|center_horizontal"
         android:paddingBottom="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
-        android:id="@+id/cadalso"
+        android:id="@+id/gallows"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textSolution"
         android:contentDescription="@string/image_of_the_game_status"
+        android:scaleType="fitXY"
         android:src="@drawable/pic00" />
 
     <View
-        android:id="@+id/separador1"
+        android:id="@+id/separator1"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_alignBottom="@+id/textSolution"
@@ -89,20 +91,32 @@
         android:id="@+id/textPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/separador1"
-        android:layout_alignLeft="@+id/lstLetrasIntroducidas"
+        android:layout_above="@+id/separator1"
+        android:layout_alignLeft="@+id/lstLettersPlayed"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textSolution"
         android:gravity="center_vertical|center_horizontal"
         android:lines="1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textPoints"
+        android:layout_alignLeft="@+id/textPoints"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:text="@string/score"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lstLetrasIntroducidas"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textPoints"
+        android:layout_alignLeft="@+id/lstLettersPlayed"
+        android:layout_alignRight="@+id/lstLettersPlayed"
+        android:layout_alignTop="@+id/gallows"
+        android:gravity="center_vertical|center_horizontal"
         android:text="@string/played"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

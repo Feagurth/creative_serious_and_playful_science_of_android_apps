@@ -9,4 +9,26 @@
 
     <string name="played">Played</string>
 
+    <string name="wrong_character_">Wrong character!</string>
+
+    <string name="please_input_a_letter_">Please, input a letter...</string>
+
+    <string name="you_already_played_that_letter_plese_choose_another_one_">You already played that letter!\nPlese choose another one...</string>
+
+    <string name="good_work">Good Work</string>
+
+    <string name="you_win_">You Win!</string>
+
+    <string name="ok">OK</string>
+
+    <string name="oooohhh">Oooohhh</string>
+
+    <string name="answer_">"Answer: "</string>
+
+    <string name="meaning_">"Meaning: "</string>
+
+    <string name="you_lose_">You Lose!</string>
+
+    <string name="score">Score</string>
+
 </resources>
