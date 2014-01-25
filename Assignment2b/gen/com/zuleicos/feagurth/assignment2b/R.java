@@ -31,9 +31,9 @@ public final class R {
         public static final int pic06=0x7f020007;
     }
     public static final class id {
-        public static final int editLetter=0x7f070005;
+        public static final int editLetter=0x7f070004;
         public static final int gallows=0x7f070001;
-        public static final int inputButton=0x7f070004;
+        public static final int inputButton=0x7f070005;
         public static final int lstLettersPlayed=0x7f070000;
         public static final int separator1=0x7f070007;
         public static final int separator2=0x7f070003;

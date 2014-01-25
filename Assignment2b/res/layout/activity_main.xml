@@ -28,27 +28,14 @@
         android:layout_marginBottom="5dp"
         android:layout_below="@+id/gallows"
         android:background="@android:color/darker_gray" />
-
-    <Button
-        android:id="@+id/inputButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editLetter"
-        android:layout_alignRight="@+id/editLetter"
-        android:layout_below="@+id/editLetter"
-        android:duplicateParentState="false"
-        android:longClickable="false"
-        android:onClick="inputLetter"
-        android:text="@string/input_character" />
    
     <EditText
         android:id="@+id/editLetter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/separator2"
-        android:layout_alignRight="@+id/separator2"
         android:layout_below="@+id/separator2"
-        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/inputButton"
         android:clickable="false"
         android:ems="10"
         android:enabled="true"
@@ -76,7 +63,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textSolution"
         android:contentDescription="@string/image_of_the_game_status"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/pic00" />
 
     <View
@@ -119,5 +106,16 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/played"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/inputButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/separator2"
+        android:layout_alignTop="@+id/separator2"
+        android:duplicateParentState="false"
+        android:longClickable="false"
+        android:onClick="inputCharacter"
+        android:text="@string/input_character" />
 
 </RelativeLayout>
