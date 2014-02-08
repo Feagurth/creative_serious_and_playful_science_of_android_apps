@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mastermind</string>
+    <string name="tryButton">Try</string>
+    <string name="ok">Ok</string>
+    <string name="image">image</string>
+    <string name="tries">Tries</string>
+
+</resources>
