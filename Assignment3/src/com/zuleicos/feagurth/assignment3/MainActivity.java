@@ -17,11 +17,13 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+	// Variables for storing the buttons
 	ImageButton ibnOne;
 	ImageButton ibnTwo;
 	ImageButton ibnThree;
 	ImageButton ibnFour;
 
+	// Variables for storing the images of the result
 	ImageView image1;
 	ImageView image2;
 	ImageView image3;
@@ -30,13 +32,16 @@ public class MainActivity extends Activity {
 	TextView textTries;
 	Button buttonTry;
 
+	// Variable for storing the number of tries to win the game
 	int numTries = 10;
 
+	// Current color selected on the players' hand
 	int colorButton1 = 0;
 	int colorButton2 = 0;
 	int colorButton3 = 0;
 	int colorButton4 = 0;
 
+	// Current color selected on the images to guess
 	int colorImage1 = 6;
 	int colorImage2 = 6;
 	int colorImage3 = 6;
@@ -47,6 +52,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		// Getting the objects of the layout on their variables
 		textTries = (TextView) findViewById(R.id.textTries);
 
 		ibnOne = (ImageButton) findViewById(R.id.imageButton1);
@@ -61,10 +67,13 @@ public class MainActivity extends Activity {
 
 		buttonTry = (Button) findViewById(R.id.buttonTry);
 
+		// Setting the listener for the first button
 		ibnOne.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
+
+				// Changing colors on every click
 				if (colorButton1 < 5) {
 					colorButton1++;
 				} else {
@@ -75,10 +84,13 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		// Setting the listener for the second button
 		ibnTwo.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+
+				// Changing colors on every click
 				if (colorButton2 < 5) {
 					colorButton2++;
 				} else {
@@ -90,10 +102,13 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		// Setting the listener for the third button
 		ibnThree.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+
+				// Changing colors on every click
 				if (colorButton3 < 5) {
 					colorButton3++;
 				} else {
@@ -105,10 +120,13 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		// Setting the listener for the Fourth button
 		ibnFour.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+
+				// Changing colors on every click
 				if (colorButton4 < 5) {
 					colorButton4++;
 				} else {
@@ -119,21 +137,91 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		// Starting a new game
 		generateNewGame();
 
 	}
 
+	/**
+	 * Method to reset the game table and start a new game
+	 */
+	private void generateNewGame() {
+
+		// We create random object
+		Random rnd = new Random();
+
+		// And randomize the values to guess
+		colorImage1 = rnd.nextInt(6);
+		colorImage2 = rnd.nextInt(6);
+		colorImage3 = rnd.nextInt(6);
+		colorImage4 = rnd.nextInt(6);
+
+		// We reset the values of the color selected by the user
+		colorButton1 = 0;
+		colorButton2 = 0;
+		colorButton3 = 0;
+		colorButton4 = 0;
+
+		// And hide the colors to guess
+		image1.setColorFilter(Color.DKGRAY);
+		image2.setColorFilter(Color.DKGRAY);
+		image3.setColorFilter(Color.DKGRAY);
+		image4.setColorFilter(Color.DKGRAY);
+
+		// We set the color of the player's buttons
+		ibnOne.setColorFilter(getButtonColor(colorButton1));
+		ibnTwo.setColorFilter(getButtonColor(colorButton2));
+		ibnThree.setColorFilter(getButtonColor(colorButton3));
+		ibnFour.setColorFilter(getButtonColor(colorButton4));
+
+		// And set the number of tries
+		numTries = 10;
+
+		// And the text
+		textTries.setText("Tries: " + numTries);
+
+		// We loop to reset all the ImageView with the previous answers hiding
+		// it and applying a new color
+		for (int i = 1; i <= numTries; i++) {
+			findViewById(
+					getIdByString(this.getApplicationContext(), "result" + i))
+					.setVisibility(View.GONE);
+
+			for (int j = 0; j < 4; j++) {
+				ImageView tmpImageView = (ImageView) findViewById(getIdByString(
+						getApplicationContext(), "Peg" + (j + 1) + "Res" + i));
+				tmpImageView.setColorFilter(Color.LTGRAY);
+
+				tmpImageView = (ImageView) findViewById(getIdByString(
+						getApplicationContext(), "image" + (j + 1) + "result"
+								+ i));
+				tmpImageView.setColorFilter(Color.LTGRAY);
+			}
+		}
+	}
+
+	/**
+	 * Method to be used when the user tries to guess a combination
+	 * 
+	 * @param view
+	 *            View associated to the button
+	 */
 	public void TryToGuess(View view) {
 
+		// Creating an string with the values to guess
 		String code = String.valueOf(colorImage1) + String.valueOf(colorImage2)
 				+ String.valueOf(colorImage3) + String.valueOf(colorImage4);
+
+		// Creating an string with the values selected by the user
 		String guess = String.valueOf(colorButton1)
 				+ String.valueOf(colorButton2) + String.valueOf(colorButton3)
 				+ String.valueOf(colorButton4);
 
+		// Two boolean arrays to store if the code was used or guessed
 		boolean[] codeUsed = new boolean[code.length()];
 		boolean[] guessUsed = new boolean[guess.length()];
 
+		// Variable initializing
 		int correct = 0;
 		int match = 0;
 
@@ -157,105 +245,115 @@ public class MainActivity extends Activity {
 			}
 		}
 
+		// If we had less than 4 correct colors we are losing..!
 		if (correct < 4) {
+
+			// We show the colors used on and the result
 			putResults(correct, match);
+
+			// We change the value of the TextView and decrement the number of
+			// tries by one
 			textTries.setText("Tries: " + --numTries);
+
+			if (numTries == 0) {
+				// Showing the code to guess
+				showSolution();
+
+				msgBox("Sorry...", "You lose...");
+			}
+
 		} else {
+			// Showing the code to guess
+			showSolution();
+
+			// We show a message if we won the game
 			msgBox("Congratulations...", "You Win!!!");
-			
-			generateNewGame();
 		}
 	}
 
+	/**
+	 * Method to show the solution of the game
+	 */
+	private void showSolution() {
+
+		ImageView temp;
+
+		temp = (ImageView) findViewById(getIdByString(getApplicationContext(),
+				"imageView1"));
+		temp.setColorFilter(getButtonColor(colorImage1));
+
+		temp = (ImageView) findViewById(getIdByString(getApplicationContext(),
+				"imageView2"));
+		temp.setColorFilter(getButtonColor(colorImage2));
+
+		temp = (ImageView) findViewById(getIdByString(getApplicationContext(),
+				"imageView3"));
+		temp.setColorFilter(getButtonColor(colorImage3));
+
+		temp = (ImageView) findViewById(getIdByString(getApplicationContext(),
+				"imageView4"));
+		temp.setColorFilter(getButtonColor(colorImage4));
+	}
+
+	/**
+	 * Method to show the results of a player's guess
+	 * 
+	 * @param correct
+	 *            Number of correct guesses
+	 * @param match
+	 *            Number of guesses that match on color but not in position
+	 */
 	private void putResults(int correct, int match) {
 
+		// We made visible the LinearLayout that contains the Images to show
 		findViewById(
 				getIdByString(getApplicationContext(), "result" + numTries))
 				.setVisibility(View.VISIBLE);
 
+		// We get the first button
 		ImageView result1 = (ImageView) findViewById(getIdByString(
 				getApplicationContext(), "image1result" + numTries));
 
+		// And change it's color due to the color selected by the user
 		result1.setColorFilter(getButtonColor(colorButton1));
 
+		// We get the second button
 		ImageView result2 = (ImageView) findViewById(getIdByString(
 				getApplicationContext(), "image2result" + numTries));
 
+		// And change it's color due to the color selected by the user
 		result2.setColorFilter(getButtonColor(colorButton2));
 
+		// We get the third button
 		ImageView result3 = (ImageView) findViewById(getIdByString(
 				getApplicationContext(), "image3result" + numTries));
 
+		// And change it's color due to the color selected by the user
 		result3.setColorFilter(getButtonColor(colorButton3));
 
+		// We get the fourth button
 		ImageView result4 = (ImageView) findViewById(getIdByString(
 				getApplicationContext(), "image4result" + numTries));
 
+		// And change it's color due to the color selected by the user
 		result4.setColorFilter(getButtonColor(colorButton4));
 
+		// We loop to set the color of the correct pegs
 		for (int i = 1; i <= correct; i++) {
 			ImageView point = (ImageView) findViewById(getIdByString(
 					getApplicationContext(), "Peg" + i + "Res" + numTries));
 			point.setColorFilter(Color.BLACK);
 		}
 
+		// We loop to set the color of the matched pegs
 		for (int i = 1; i <= match; i++) {
 			ImageView point = (ImageView) findViewById(getIdByString(
 					getApplicationContext(), "Peg" + (i + correct) + "Res"
 							+ numTries));
 			point.setColorFilter(Color.WHITE);
 		}
-
 	}
 
-	private void generateNewGame() {
-		Random rnd = new Random();
-
-		colorImage1 = rnd.nextInt(6);
-		colorImage2 = rnd.nextInt(6);
-		colorImage3 = rnd.nextInt(6);
-		colorImage4 = rnd.nextInt(6);
-
-		colorButton1 = 0;
-		colorButton2 = 0;
-		colorButton3 = 0;
-		colorButton4 = 0;
-
-		image1.setColorFilter(Color.DKGRAY);
-		image2.setColorFilter(Color.DKGRAY);
-		image3.setColorFilter(Color.DKGRAY);
-		image4.setColorFilter(Color.DKGRAY);
-
-		ibnOne.setColorFilter(getButtonColor(colorButton1));
-		ibnTwo.setColorFilter(getButtonColor(colorButton2));
-		ibnThree.setColorFilter(getButtonColor(colorButton3));
-		ibnFour.setColorFilter(getButtonColor(colorButton4));
-
-		numTries = 10;
-
-		textTries.setText("Tries: " + numTries);
-
-		for (int i = 1; i <= numTries; i++) {
-			findViewById(
-					getIdByString(this.getApplicationContext(), "result" + i))
-					.setVisibility(View.GONE);
-
-			for (int j = 0; j < 4; j++) {
-				ImageView tmpImageView = (ImageView) findViewById(getIdByString(
-						getApplicationContext(), "Peg" + (j + 1) + "Res" + i));
-				tmpImageView.setColorFilter(Color.LTGRAY);
-
-				tmpImageView = (ImageView) findViewById(getIdByString(
-						getApplicationContext(), "image" + (j + 1) + "result"
-								+ i));
-				tmpImageView.setColorFilter(Color.LTGRAY);
-
-			}
-
-		}
-
-	}
-	
 	/**
 	 * Method to create an alert dialog to show the user some info
 	 * 
@@ -278,17 +376,31 @@ public class MainActivity extends Activity {
 		dlgAlert.setPositiveButton(R.string.ok,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
+
+						// We start a new game
+						generateNewGame();
+
+						// And dismiss the dialog
 						dialog.dismiss();
 					}
 				});
 
-		// We set the dialog alert cancelable
-		dlgAlert.setCancelable(true);
+		dlgAlert.setIcon(R.drawable.ic_launcher);
+
+		// We set the dialog alert no cancelable
+		dlgAlert.setCancelable(false);
 
 		// And finally we create it and show it
 		dlgAlert.create().show();
-	}	
+	}
 
+	/**
+	 * Method to return a color by their color value
+	 * 
+	 * @param buttonValueColor
+	 *            Color value
+	 * @return
+	 */
 	private int getButtonColor(int buttonValueColor) {
 		switch (buttonValueColor) {
 		case 0:
@@ -310,6 +422,15 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Method to generate an id number by an string
+	 * 
+	 * @param context
+	 *            Context of the application
+	 * @param id
+	 *            String with the id to process
+	 * @return Id number as an integer
+	 */
 	private int getIdByString(Context context, String id) {
 
 		return context.getResources().getIdentifier(id, "id", getPackageName());
